@@ -12,23 +12,20 @@ import es.upm.dit.isst.tfg.model.TFG;
 
 @SuppressWarnings("serial")
 public class ISST_TFG_T4Servlet extends HttpServlet {
-	// TFGDAO dao = TFGDAOImpl.getInstance();
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		/*resp.setContentType("text/plain");
-		for(TFG tfg: dao.read()) {
-			resp.getWriter().println(tfg);
-		}*/
 		UserService userService = UserServiceFactory.getUserService();
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
-		resp.setContentType("text/html");            
+		String user = "";
 		if (req.getUserPrincipal() != null){
-		    url = userService.createLogoutURL(req.getRequestURI());
-		    urlLinktext = "Logout";
-	        	    resp.getWriter().println("<p>Hola" + req.getUserPrincipal().getName() + "</p>");
-		}	
-		resp.getWriter().println("<p>Pulsa <a href=\"" + url + "\">" + urlLinktext + "</a>.</p>");
-
+			user = req.getUserPrincipal().getName();
+			url = userService.createLogoutURL(req.getRequestURI());
+			urlLinktext = "Logout";
+		}
+		req.getSession().setAttribute("user", user);
+		req.getSession().setAttribute("url", url);
+		req.getSession().setAttribute("urlLinktext", urlLinktext);
+		resp.sendRedirect("/es_upm_dit_isst_tfg");
 	}
 }
 
