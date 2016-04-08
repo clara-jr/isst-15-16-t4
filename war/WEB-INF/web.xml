@@ -5,11 +5,11 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Es_upm_dit_isst_tfg</servlet-name>
-		<servlet-class>es.upm.dit.isst.tfg.Es_upm_dit_isst_tfgServlet</servlet-class>
+		<servlet-name>ISST_TFG_T4Servlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.ISST_TFG_T4Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Es_upm_dit_isst_tfg</servlet-name>
+		<servlet-name>ISST_TFG_T4Servlet</servlet-name>
 		<url-pattern>/es_upm_dit_isst_tfg</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>

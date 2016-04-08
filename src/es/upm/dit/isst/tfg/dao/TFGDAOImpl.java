@@ -52,7 +52,7 @@ public class TFGDAOImpl implements TFGDAO {
 	public List<TFG> read() {
 		// TODO Auto-generated method stub
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select m from TFG m");
+		Query q = em.createQuery("SELECT m FROM TFG m");
 		List<TFG> res = q.getResultList();
 		em.close();
 		return res;
@@ -64,7 +64,12 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> readTutor(String profesor) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.autor = :tutor");
+		q.setParameter("tutor", profesor);
+		List<TFG> res = q.getResultList();
+		em.close();
+		return res;
 	}
 
 	/* (non-Javadoc)
@@ -73,7 +78,12 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> readSecretario(String profesor) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.secretario = :secretario");
+		q.setParameter("secretario", profesor);
+		List<TFG> res = q.getResultList();
+		em.close();
+		return res;
 	}
 
 	/* (non-Javadoc)
@@ -82,7 +92,12 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> readEstado(int estado) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.estado = :estado");
+		q.setParameter("estado", estado);
+		List<TFG> res = q.getResultList();
+		em.close();
+		return res;
 	}
 
 	/* (non-Javadoc)
@@ -91,16 +106,23 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public TFG readAlumno(String autor) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.autor = :autor");
+		q.setParameter("autor", autor);
+		TFG res = (TFG) q.getSingleResult();
+		em.close();
+		return res;
 	}
 
 	/* (non-Javadoc)
 	 * @see es.dit.upm.isst.t4.dao.TFGDAO#update(es.upm.dit.isst.t4.model.TFG)
 	 */
 	@Override
-	public TFG update(TFG tfg) {
+	public void update(TFG tfg) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		em.merge(tfg);
+		em.close();
 	}
 
 	/* (non-Javadoc)
@@ -109,7 +131,9 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-
+		EntityManager em = EMFService.get().createEntityManager();
+		em.remove(id);
+		em.close();
 	}
 
 }

@@ -19,7 +19,7 @@ public interface TFGDAO {
 	public List<TFG> readSecretario (String profesor);
 	public List<TFG> readEstado (int estado);
 	public TFG readAlumno (String autor);
-	public TFG update (TFG tfg);
+	public void update (TFG tfg);
 	public void delete (String id);
 	
 }
